@@ -1,4 +1,4 @@
-public class Subtract implements Calculator.Calculation {
+public class Subtract implements Calculation {
     public int calculate(int first, int second) {
         return first - second;
     }
