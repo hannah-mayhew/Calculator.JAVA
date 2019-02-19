@@ -20,10 +20,6 @@ public class Calculator {
         System.out.println("Your answer is: " + result);
     }
 
-    public interface Calculation {
-        int calculate(int first, int second);
-    }
-
     private static Calculation chooseCalculation() {
         System.out.println("Choose an operation: +/*/-");
         Scanner scanner = new Scanner(System.in);
@@ -37,23 +33,9 @@ public class Calculator {
         } else if (input.equals(multiply)) {
             return new Multiply();
         } else if (input.equals(subtract)) {
-            return new Subtract ();
-        }
-
-        class Add implements Calculation {
-            public int calculate(int first, int second) {
-                return first + second;
-            }
-        }
-        class Multiply implements Calculation {
-            public int calculate(int first, int second) {
-                return first * second;
-            }
-        }
-        class Subtract implements Calculation {
-            public int calculate(int first, int second) {
-                return first - second;
-            }
+            return new Subtract();
+        } else {
+            System.out.println("Invalid operation");
         }
     }
 }
