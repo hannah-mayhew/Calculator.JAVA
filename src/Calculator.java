@@ -1,34 +1,59 @@
 import java.util.Scanner;
 
 public class Calculator {
+
+
     public static void main(String[] args) {
         System.out.println("Welcome to the Calculator!");
 
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("Enter your first number");
+        Scanner scanner = new Scanner(System.in);
         int first = scanner.nextInt();
 
-        System.out.println("Choose an operation: +/*/-");
-            String input = scanner.next();
-            String add = "+";
-            String subtract = "-";
-            String multiply = "*";
-            int answer = 0;
+        Calculation Calculation = chooseCalculation();
 
         System.out.println("Enter your second number");
         int second = scanner.nextInt();
 
-            if (input.equals(add)) {
-                answer = first + second;
-            }
-            else if (input.equals(multiply)) {
-                answer = first * second;
-            }
-            else if (input.equals(subtract)) {
-                answer = first - second;
-            }
+        int result = Calculation.calculate(first, second);
 
-        System.out.println("The answer is: " + answer);
+        System.out.println("Your answer is: " + result);
+    }
+
+    public interface Calculation {
+        int calculate(int first, int second);
+    }
+
+    private static Calculation chooseCalculation() {
+        System.out.println("Choose an operation: +/*/-");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.next();
+        String add = "+";
+        String subtract = "-";
+        String multiply = "*";
+
+        if (input.equals(add)) {
+            return new Add();
+        } else if (input.equals(multiply)) {
+            return new Multiply();
+        } else if (input.equals(subtract)) {
+            return new Subtract ();
+        }
+
+        class Add implements Calculation {
+            public int calculate(int first, int second) {
+                return first + second;
+            }
+        }
+        class Multiply implements Calculation {
+            public int calculate(int first, int second) {
+                return first * second;
+            }
+        }
+        class Subtract implements Calculation {
+            public int calculate(int first, int second) {
+                return first - second;
+            }
+        }
     }
 }
