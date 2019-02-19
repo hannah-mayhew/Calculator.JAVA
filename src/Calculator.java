@@ -34,7 +34,7 @@ public class Calculator {
         } else if (input.equals(subtract)) {
             return new Subtract();
         } else {
-            System.out.println("Invalid operation");
+            return null;
         }
     }
 }
